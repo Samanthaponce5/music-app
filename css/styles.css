@@ -1,0 +1,232 @@
+body {
+	background: linear-gradient(-45deg,#4699c5, rgb(55, 66, 64), #808080, 	#696969, #505050	);
+	background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    margin: 0;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+
+/* html { 
+    background: url("https://wallpapercave.com/wp/wp3549816.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  } */
+
+/*  FOR SECTION*/
+
+#slide{
+    height: 100vh;
+  
+    box-sizing: border-box;
+    padding: 35px;
+}
+#slide2{
+    height: 100vh;
+    
+    box-sizing: border-box;
+    padding: 35px;
+}
+
+#slide p{
+    margin: 0;
+}
+
+
+/*  FOR STICKMAN ANIMATION*/
+#canvas{
+     
+     max-width:500px;
+  bottom: 10px;
+  
+}
+
+
+
+/*  FOR FORM*/
+input, button {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -300%);
+    display: block;
+    width: 70vw;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s cubic-bezier(0.4, 0.25, 0.8, 0.3);
+}
+input {
+    max-width:250px;
+    padding: 0.25rem 0;
+    border: 0;
+    border-bottom: 1px solid #262d47;
+    outline: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 3rem;
+    line-height: 4rem;
+    letter-spacing: 0.125rem;
+    transition: all 0.5s cubic-bezier(0.4, 0.25, 0.8, 0.3);
+}
+input::selection {
+    background: rgba(25, 24, 37, 0.25);
+}
+button, .signup-button {
+    
+    max-width:250px;
+    padding: 0.25em 0;
+    border-radius: 50px;
+    outline: 0;
+    background-color: Transparent;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 2rem;
+    line-height: 3.6rem;
+    letter-spacing: 0.0625rem;
+    box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 -2px 0 rgba(0, 0, 0, 0.25), 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+ 
+input:focus, button:focus {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+    pointer-events: auto;
+    transition: all 0.4s cubic-bezier(0.1, 0.45, 0.1, 0.85) 0.5s;
+    z-index: 10;
+}
+input:focus ~ input, input:focus ~ button {
+    transform: translate(-50%, 500%);
+    transition: all 0.5s ease-in;
+}
+input:focus ~ label .label-text {
+    transform: translate(-50%, 300%);
+    transition: all 0.5s ease-in;
+}
+input:focus ~ .tip {
+    opacity: 1;
+}
+input:focus ~ .signup-button, button:focus ~ .signup-button {
+    opacity: 0;
+}
+input:focus + label .label-text {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+    transition: all 0.3s cubic-bezier(0.1, 0.45, 0.1, 0.85) 0.4s;
+}
+input:focus + label .nav-dot:before {
+    background: #21263f;
+    box-shadow: 0 0 0 0.15rem #111, 0 0 0.05rem 0.26rem #16171a;
+}
+.tip {
+    max-width:250px;
+    position: fixed;
+    top: 57%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    opacity: 0;
+    color: #42555f;
+    font-size: 0.875rem;
+    font-weight: 300;
+    letter-spacing: 0.125rem;
+    text-transform: uppercase;
+    text-align: right;
+    transition: opacity 0.25s 0.5s;
+}
+.signup-button, .signup-button-trigger {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    width: 70vw;
+    padding: 0.25rem 0;
+    line-height: 3.6rem;
+    text-align: center;
+    pointer-events: none;
+    cursor: pointer;
+    transition: opacity 0.4s 0.3s;
+}
+.signup-button-trigger {
+    opacity: 0;
+    pointer-events: auto;
+}
+.label-text {
+    max-width:250px;
+    position: fixed;
+    top: calc(50% - 4rem);
+    left: 50%;
+    transform: translate(-50%, -300%);
+    width: 70vw;
+    padding: 3.125rem 0 1.5rem;
+    text-transform: uppercase;
+    color: #23282b;
+    opacity: 0;
+    font-size: 1.125rem;
+    font-weight: 300;
+    letter-spacing: 0.125rem;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.4, 0.25, 0.8, 0.3) 0.05s;
+}
+/* i dont think i ned form */
+form {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+ 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
