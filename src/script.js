@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded',function() {
     
     formInput()
     postUser()
-    
+   
 })
 
 //=============POST NEW USER====================================================================================================================
@@ -33,7 +33,7 @@ function postUser(){
 function formInput(){
     let form = document.querySelector('#myform')
     form.innerHTML = `
-    <form >
+    <form autocomplete="off">
     <input id="input-1" type="text" placeholder="Username" name="username"required autofocus />
     <label for="input-1">
       <span class="label-text">Enter username:</span>
@@ -42,7 +42,7 @@ function formInput(){
     </label>
  
     <input type="submit" style="display: none" />
-    <p class="tip">Press Tab</p>
+    <p class="tip">PRESS ENTER</p>
     <div class="signup-button">Sign Up</div>
     </form>
     `
@@ -53,27 +53,32 @@ function formInput(){
 function after (){
     let form = document.querySelector('#myform')
     form.innerHTML = ``
-
+//---
     let img = document.querySelector('#canvas')
     img.remove()
+//---
     let section1 = document.getElementById('sec')
     let section2 = document.getElementById('sec2')
-
-   section1.innerHTML = `
-   
+    let search = document.querySelector('.search')
+//----SEARCH BAR---
+    search.innerHTML = `
+    <div class="one">
+    <div class="two">
+      <div class="three">
+        <input type="search" class="four" placeholder="        Search . . ." required />
+      </div>
+      <div class="stick"></div>
+    </div>
+  </div>
+    `
+//----section1---
+ section1.innerHTML = `
    <section id="slide">
-    <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam illo
-        reprehenderit ut laboriosam necessitatibus voluptates, unde expedita
-        quis suscipit impedit numquam veniam molestias, aliquid a velit?
-        Asperiores explicabo totam quasi.
-    </p>
+ 
     </section>
     <hr>
 `
-
-
-
+//----section 2----
   section2.innerHTML=
   `
   <section id="slide2">
@@ -86,9 +91,70 @@ function after (){
     </section>
 `
 
+getSongs()
 }
 
 
+//=======================================GET SONGS IN SEARCH BAR==============================================================================
+
+let search = document.querySelector('.search')
+let matchList = document.querySelector('.gradient-list')
+
+let states;
+
+// Get states
+const getSongs = async () => {
+ const res = await fetch('http://localhost:3000/api/v1/songs');
+ songs = await res.json();
+};
+
+// FIlter states
+const searchSongs = searchText => {
+ // Get matches to current text input
+ let matches = songs.filter(song => {
+  const regex = new RegExp(`^${searchText}`, 'gi');
+  return song.title.match(regex) || song.artist.match(regex);//change later to search by title or album
+  
+ });
+
+ // Clear when input or matches are empty
+ if (searchText.length === 0) {
+  matches = [];
+  matchList.innerHTML = '';
+ }
+
+ outputHtml(matches);
+};
+
+// Show results in HTML
+const outputHtml = matches => {
+ if (matches.length > 0) {
+  const html = matches
+   .map(
+    match => `
+    
+    <li>${match.artist}: ${match.title} </li>
+   </div>`
+   )
+   .join('');
+  matchList.innerHTML = html;
+ }
+};
+
+
+search.addEventListener('input', (e) => searchSongs(e.target.value));
+//=========================================================================================================
+
+
+
+
+
+
+ 
+
+
+
+    
 
 
 
