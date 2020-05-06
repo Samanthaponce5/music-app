@@ -26,35 +26,58 @@ body {
     background-size: cover;
   } */
 
+/*  SECOND SECTION STYLING*/
+* {
+  box-sizing: border-box;
+}
 
 
+/* Create three unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+}
+
+/* Left and right column */
+.column.side {
+  width: 25%;
+  padding: 145px;
+}
+
+/* Middle column */
+.column.middle {
+  width: 50%;
+  box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(24, 24, 24, 0.22);
+
+  
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* makes the three columns stack on top of each other instead of next to each other when making page bigger or smaller */
+@media screen and (max-width: 600px) {
+  .column.side, .column.middle {
+    width: 100%;
+  }
+}
   /* SEARCH BAR*/
   
   *, *:before, *:after {
     transition: transform 0.6s cubic-bezier(0.6, 0, 0.4, 1);
  }
   ::-webkit-input-placeholder {
-   /* Chrome/Opera/Safari */
+  
     color: inherit;
     opacity: 0.6;
  }
-  ::-moz-placeholder {
-   /* Firefox 19+ */
-    color: inherit;
-    opacity: 0.6;
- }
-  :-ms-input-placeholder {
-   /* IE 10+ */
-    color: inherit;
-    opacity: 0.6;
- }
-  :-moz-placeholder {
-   /* Firefox 18- */
-    color: inherit;
-    opacity: 0.6;
- }
+
   .search {
-    
+    border-color: coral;
     overflow: hidden;
     padding: 0 0 1.25em;
     opacity: 0.7;
@@ -66,6 +89,7 @@ body {
     opacity: 1;
  }
   .one {
+    
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -76,6 +100,7 @@ body {
     z-index: 2;
  }
   .two {
+    
     width: calc(100% - 1em);
     height: 100%;
     position: absolute;
@@ -199,15 +224,6 @@ body {
 
 
   /*DESIGN FOR LIST*/
- 
-/*
-* Prefixed by https://autoprefixer.github.io
-* PostCSS: v7.0.29,
-* Autoprefixer: v9.7.6
-* Browsers: last 4 version
-*/
-
-/* List */
 ol {
   margin-left: auto;
   margin-right: auto;
@@ -217,10 +233,6 @@ ol {
   max-width: 300px;
 }
 
-/* List element */
-/* List */
-
-/* List element */
 li {
  counter-increment: index;  /* to take number off comment out*/
   display: flex;
@@ -247,38 +259,120 @@ li::before {
 }
 
 
-/* Element separation */
+/* Element separation shadow line*/
 li + li {
   border-top: 1px solid rgba(255,255,255,0.2);
   
 }
 
 
-
-
-
-
-
   /*END OF LIST*/
+  
+  
+/*hidden nav*/
+nav {
+  background-color: transparent;
+  height: 100vh;
+  width: 200px;
+  position: fixed;
+  transform: translateX(-200px);
+  transition: transform 0.3s ease-in-out;
+}
 
+nav:after {
+  box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(24, 24, 24, 0.22);
+  content: '';
+  background: transparent;
+  height: 80px;
+  width: 80px;
+  position: absolute;
+  right: -40px;
+  top: 40px;
+  border-radius: 50%;
+}
+
+nav:hover {
+  transform: translateX(0px);
+}
 /*  FOR SECTIONS*/
 
-#slide{
-    height: 100vh;
-  
-    box-sizing: border-box;
-    padding: 35px;
-}
-#slide2{
-    height: 100vh;
-    
-    box-sizing: border-box;
-    padding: 35px;
+.container {
+  min-height: 100vh;
+  font-family: Montserrat, sans-serif;
 }
 
-#slide p{
-    margin: 0;
+nav a {
+    font-size: 40px;
+    color: #fff;
+    text-decoration: none;
+    padding: 20px;
+    text-align: center;
 }
+
+nav {
+    position: fixed;
+    left: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 100vh;
+    background: var(--secondary-color);
+}
+
+section {
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    width: 0;
+    opacity: 0;
+    transition: all ease-in .5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+
+/* section div {
+    color: #fff;
+    font-size: 50px;
+    text-transform: uppercase;
+    opacity: 0;
+} */
+
+/* Styles applied on trigger */
+section:target {
+    opacity: 1;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+section:target div {
+    opacity: 0;
+    animation: 2s fadeIn forwards .5s;
+}
+
+#first {
+  background:var(--primary-color);
+}
+#second {
+    background: var(--complimentary-color);
+}
+
+#third {
+    background: var(--contrast-color);
+}
+
+#fourth {
+    background: var(--light-color);
+}
+
+@keyframes fadeIn {
+    100% { opacity:1 }
+}
+
 
 
 /*  FOR STICKMAN ANIMATION*/
@@ -408,7 +502,6 @@ button, .signup-button {
     opacity: 0;
 
 }
-/* i dont think i ned form */
 
 
 

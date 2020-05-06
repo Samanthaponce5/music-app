@@ -57,9 +57,9 @@ function after (){
     let img = document.querySelector('#canvas')
     img.remove()
 //---
-    let section1 = document.getElementById('sec')
-    let section2 = document.getElementById('sec2')
+    let section1 = document.querySelector('.container')
     let search = document.querySelector('.search')
+    let navbar = document.getElementById('navbar')
 //----SEARCH BAR---
     search.innerHTML = `
     <div class="one">
@@ -71,30 +71,68 @@ function after (){
     </div>
   </div>
     `
-//----section1---
+
+    navbar.innerHTML = `
+    <nav>
+    <a href="#first"><i class="fas fa-home"></i></i></a>
+    <a href="#second"><i class="fas fa-music"></i></a>
+    <a href="#third"><i class="far fa-star"></i></a>
+    <a href="#fourth"><i class="fas fa-question"></i></a>
+   </nav>
+    `
+//----section---
  section1.innerHTML = `
-   <section id="slide">
+
+ <section id= 'first'>
  
-    </section>
-    <hr>
+</section>
+
+<section id= 'second'>
+
+ <div>Second</div>
+
+</section>
+
+<section id= 'third'>
+<div>Third</div>
+</section>
+
+<section id= 'fourth'>
+<div>Fourth</div>
+</section>
 `
-//----section 2----
-  section2.innerHTML=
-  `
-  <section id="slide2">
-    <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
-        aperiam dolorum aspernatur sit quae eaque laborum. Minima, voluptate
-        libero nemo ab similique, assumenda necessitatibus voluptatibus animi
-        dolorum obcaecati unde tempora!
-    </p>
-    </section>
-`
+let firstSec = document.getElementById('first')
+//firstSec.appendChild(search)
 
 getSongs()
+secondSection()
 }
 
-
+//=======================================SECOND SECTION==============================================================================
+function secondSection(song){
+    let second = document.getElementById('second')
+    second.innerHTML = `
+    <span>
+    <div class="row">
+  <div class="column side">
+    <h2>Testing for title</h2>
+    <p>Testing</p>
+  </div>
+  
+  <div class="column middle">
+    <h2>Eventually player will be here</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros, eget luctus quam orci in velit. Praesent scelerisque tortor sed accumsan convallis.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros, eget luctus quam orci in velit. Praesent scelerisque tortor sed accumsan convallis.</p>
+  </div>
+  
+  <div class="column side">
+    <h2>Side</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+  </div>
+</div>
+</span>
+    `
+}
 //=======================================GET SONGS IN SEARCH BAR==============================================================================
 
 let search = document.querySelector('.search')
@@ -132,13 +170,14 @@ const outputHtml = matches => {
   const html = matches
    .map(
     match => `
-    
+    <div>
     <li>${match.artist}: ${match.title} </li>
    </div>`
    )
    .join('');
   matchList.innerHTML = html;
  }
+ 
 };
 
 
