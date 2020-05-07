@@ -30,7 +30,112 @@ body {
 * {
   box-sizing: border-box;
 }
+/*list for favorite songs*/
 
+.list-item{
+	width:250px;
+  height: 720px;
+  overflow:hidden; 
+  overflow-y:scroll;
+	background-image: linear-gradient(to right top, #032251, #022d6a, #013883, #04439e, #0b4fb9);
+	border-radius: 10px;
+	box-shadow: 0px 5px 30px #000;
+  }
+  
+  .item{
+	width: 100%;
+	height: 50px;
+	border-top: 1px solid rgba(0,0,0,0.5); /*div item*/
+	display: grid;
+	grid-template-columns: 1fr 6fr 1fr;
+	align-items: center;  
+	color: black;
+	font-size: 1.3rem;
+	position: relative;
+	overflow: hidden;
+  }
+  
+  .item input[type="checkbox"], .item span{
+	margin: 0 auto;
+  }
+  
+  .item label, .item span{
+	color: rgba(255,255,255,.4);
+  }
+  
+  .item input[type="checkbox"]{
+	-webkit-appearance: none;
+	height: 15px;
+	width: 15px;
+	border: 2px solid rgba(255,255,255,.4);
+	border-radius: 3px;
+	outline: none;
+	margin: 0 auto;
+	transition: .2s all;
+	cursor: pointer;
+	z-index:2;
+  }
+  
+  .item input[type="checkbox"]:before{
+	content: '\f00c';
+	position: absolute;
+	font-family: fontAwesome;
+	font-size: 10px;
+	color: rgba(255,255,255,.4);
+	opacity: 0;
+	color: aqua;
+  }
+  
+  .item input[type="checkbox"]:checked:before {
+	opacity: 1;
+  }
+  
+  .item input[type="checkbox"]:checked {
+	 border-color: aqua; 
+	box-shadow: 0px 0px 8px aqua; 
+  }
+  
+  .item input[type="checkbox"]:hover {
+	transform: scale(1.2);
+  }
+  
+  .item input[type="checkbox"]:checked  ~ label{
+	color: white; 
+  }
+  
+  .item input[type="checkbox"]:checked  ~ span{
+	color: aqua; 
+	animation: animation .5s;
+  }
+  .item label:before {
+	content: "";
+	position: absolute;
+	width: 130px;
+	height: 100%;
+	left:-80px;
+	transform: skew(40deg);
+	background: rgba(0,0,0,0.1);
+	transition: .3s;
+  }
+  .item input[type="checkbox"]:checked ~ label:before{
+	left: 120%;
+  }
+  @keyframes animation {
+	0%{
+	 opacity: 0;
+	  transform: scale(.1)  rotate(30deg);
+	}
+	50%{
+	  transform: rotate(-10deg);
+	}
+	75%{
+	  transform: rotate(3deg);
+	}
+	100%{
+	  opacity: 1;
+	  tranform: scale(1);
+	}
+  }
 
 /* Create three unequal columns that floats next to each other */
 .column {
@@ -326,7 +431,7 @@ section {
     height: 100vh;
     width: 0;
     opacity: 0;
-    transition: all ease-in .5s;
+    transition: all ease-in .5s; /*get rid of it to solve isue of switching pages*/
     display: flex;
     justify-content: center;
     align-items: center;
