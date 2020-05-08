@@ -49,8 +49,29 @@ function formInput() {
 //==================AFTER USER INPUTS================================================================
 
 function after() {
+	let notes = document.querySelector('.notes')
+	notes.innerHTML = `
+	<div class="note-position-1 note-amination">
+  &#9835;
+</div>
+<div class="note-position-2 note-amination animation-delay-2">
+  &#9833;
+</div>
+<div class="note-position-3 note-amination animation-delay-1">
+  &#9839;
+</div>
+<div class="note-position-4 note-amination">
+  &#9834;
+</div>
+	`
+
+	let title = document.querySelector('.title')
+	title.style.fontSize = ' 1em'
+	title.style.textAlign ='right'
+	title.style.transform = 'translateX(-10%)'
 	let form = document.querySelector('#myform');
-	form.innerHTML = ``;
+//    form.innerHTML = ``;
+//     window.location.href="#first"
 	//---
 	let img = document.querySelector('#canvas');
 	img.remove();
@@ -75,14 +96,16 @@ function after() {
     <a href="#first"><i class="fas fa-home"></i></i></a>
     <a href="#second"><i class="fas fa-music"></i></a>
     <a href="#third"><i class="far fa-star"></i></a>
-    <a href="#fourth"><i class="fas fa-question"></i></a>
+   
    </nav>
-    `;
+	`;
+	// <a href="#fourth"><i class="fas fa-question"></i></a>
 	//----section---
 	section1.innerHTML = `
 
  <section id= 'first'>
- 
+ <div class='work'></div>
+ <p class="line-1 anim-typewriter">Search to browse albums</p>
 </section>
 
 <section id= 'second'>
@@ -92,51 +115,37 @@ function after() {
 </section>
 
 <section id= 'third'>
-<div>Third</div>
+<container class='song'></container>
 </section>
 
-<section id= 'fourth'>
-<div>Fourth</div>
-</section>
+
 `;
+
+{/* <section id= 'fourth'>
+<div>Fourth</div>
+</section> */}
+
+form.innerHTML = ``;
+    window.location.href="#first"
 	let firstSec = document.getElementById('first');
-	//firstSec.appendChild(search)
+	firstSec.appendChild(search)
 
 	getSongs();
 	//secondSection();
 }
 
-//=======================================SECOND SECTION==============================================================================
-function secondSection() {
-	let second = document.getElementById('second');
-	second.innerHTML = `
-    <span>
-    <div class="row">
-  <div class="column side">
-    <h2>Testing for title</h2>
-    <p>Testing</p>
-  </div>
-  
-  <div class="column middle">
-    <h2>Eventually player will be here</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros, eget luctus quam orci in velit. Praesent scelerisque tortor sed accumsan convallis.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros, eget luctus quam orci in velit. Praesent scelerisque tortor sed accumsan convallis.</p>
-  </div>
-  
-  <div class="column side">
-    <h2>Side</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
-  </div>
-</div>
-</span>
-    `;
-}
+
 //=======================================GET SONGS IN SEARCH BAR==============================================================================
-let matchList = document.querySelector('.gradient-list');
+
 
 function getSongs() {
+    let div = document.querySelector('.work')
+let matchList = document.querySelector('.gradient-list');
+let text = document.querySelector('.line-1.anim-typewriter')
+
 	let search = document.querySelector('.search');
 	search.addEventListener('input', function (e) {
+		
 		const artistName = e.target.value;
 		const searchText = e.target.value;
 
@@ -160,9 +169,16 @@ function getSongs() {
 							)
 							.join('');
 
-						matchList.innerHTML = html;
+                        matchList.innerHTML = html;
+                        let firstSec = document.getElementById('first');
+                       // div.appendChild(matchList)
+                        firstSec.appendChild(matchList)
+                       
+                        
 					}
+					text.innerHTML = ''
 				} else {
+					text.textContent = 'Search to browse albums '
 					matches = [];
 					matchList.innerHTML = '';
 				}
@@ -172,6 +188,8 @@ function getSongs() {
 //======================================GET ALBUM=================================================================
 
 function getAlbum() {
+    let matchList = document.querySelector('.gradient-list');
+
 	//-------------when over li mouse turns to pointer-----
 	document.addEventListener('mouseover', function (e) {
 		if (e.target.className === 'name') {
@@ -188,16 +206,18 @@ function getAlbum() {
 			fetch(`http://localhost:3000/api/v1/albums?id=${artistId}`)
             .then((response) => response.json())
             .then((albums)=>{
+                let search = document.querySelector('.search');
                 const html = albums.items
                 .map(
                     (album) =>
                         `
+                        
                         <li class='album' data-id="${album.id}">${album.name}</li>
                         `
                 )
                 .join('');
 
-            matchList.innerHTML = html;
+            matchList.innerHTML = html;//-================-------------------------------------------------------------------------------------------------------------------
 
             })
 
@@ -231,20 +251,28 @@ document.addEventListener('click', function(e){
                 let div2 = document.createElement('div')
                 div2.className = 'item'
                 div.appendChild(div2)
-                let label = document.createElement('label')
+				let label = document.createElement('label')
+				label.setAttribute('for', 'checkbox')
                 label.className = 'label'
                 //li.dataset.trackId = track.id
                 label.innerHTML =track.name
                 div2.append(label)
                 let input = document.createElement('input')
                 input.className = 'box'
-                input.type = 'checkbox'
+				input.type = 'checkbox'
+				input.name = 'checkbox'
+				input.dataset.id = track.id
+				input.dataset.name = track.name
+				input.dataset.artist = track.artists[0].name
+				input.dataset.uri = track.uri
+				
                 div2.appendChild(input)
                 label.before(input)
                 
             })
-           
-        })
+           		favorite()
+
+		})
     }
 
 })
@@ -253,9 +281,133 @@ document.addEventListener('click', function(e){
 }
 getMusic()
 //===================Favorite====================================
+//====================================================================
+function favorite(){
+
+document.addEventListener('click', function(e){
+	if(e.target.name === 'checkbox'){
+		let songName = e.target.dataset.name
+		let artistName = e.target.dataset.artist
+		let uri = e.target.dataset.uri
+		let songObj = {title: songName, artist: artistName, uri: uri}
+		createFavorite(songObj)
+	}
+})
+}
+
+
+function createFavorite(songObj){
+	console.log(songObj)
+	let title = songObj.title
+	let artist = songObj.artist
+	let uri = songObj.uri
+	fetch(`http://localhost:3000/api/v1/favorites/?artist=${artist}&title=${title}&uri="${uri}`, {
+	  method: 'POST',
+	  headers: {
+		'accept': 'application/json',
+		'content-type': 'application/json',
+		
+	  },
+	  body: JSON.stringify(songObj)
+	  })
+	  .then(response => response.json())
+	  .then(json => addFavorite(json)) //make available to dynamic users
+  }
+
+  function addFavorite(favoriteObj){
+	//  let favoritesList = document.createElement('ul')
+	//  favoritesList.className= 'favorites-list'
+	let third = document.querySelector('.song');
+	// third.appendChild(favoritesList) 
+	// let div = document.createElement("div")
+	// let li = document.createElement("li")
+	let ul = document.createElement('ul')
+	ul.className = 'embed-container'
+	let li = document.createElement('p')
+	
+	let uri = favoriteObj.uri.split(":")
+	li.innerHTML = `<iframe src="https://open.spotify.com/embed/track/${uri[2]}"  frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> `
+	li.dataset.id = favoriteObj.id
+	ul.appendChild(li)
+	third.appendChild(ul)
+  }
 
 
 
+
+
+//   function addFavorite(favoriteObj){
+// 	let third = document.getElementById('third');
+// 	third.innerHTML = `<div class="list-item2"> </div>`
+// 	const div = document.querySelector(".list-item2")
+
+// 	let div2 = document.createElement('div')
+// 	div2.className = 'item2'
+// 	let label = document.createElement('label')
+// 	div.appendChild(div2)
+// 	label.className = 'label2'
+// 	let uri = favoriteObj.uri.split(":")
+// 	label.innerHTML =  `${favoriteObj.song_name}`
+// 	div2.append(label)
+// 	let input = document.createElement('input')
+//                 input.className = 'box'
+// 				input.type = 'checkbox'
+// 				input.name = 'checkbox'
+// 				input.dataset.id = favoriteObj.id
+// 				input.dataset.name = favoriteObj.name
+// 				//input.dataset.artist = favoriteObj.artists[0].name
+// 				input.dataset.uri =favoriteObj.uri
+				
+//                 div2.appendChild(input)
+//                 label.before(input)
+// 	// label.innerHTML =  `${favoriteObj.song_name} <iframe src="https://open.spotify.com/embed/track/${uri[2]}" width="300" height="50" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>  `
+
+//   }
+
+
+  function renderFavorites(favorites){ //?receiving an array of favorite objects
+	favorites.forEach(favorite => {
+		let third = document.getElementById('third');
+		third.innerHTML = `<div class="list-item2"> </div>`
+		const div = document.querySelector(".list-item2")
+		let div2 = document.createElement('div')
+		div2.className = 'item2'
+		let label = document.createElement('label')
+		div.appendChild(div2)
+		label.className = 'label2'
+		let uri = favorite.uri.split(":")
+		label.innerHTML =  `${favorite.song_name}  `
+
+		div2.append(label)
+		let input = document.createElement('input')
+                input.className = 'box'
+				input.type = 'checkbox'
+				input.name = 'checkbox'
+				input.dataset.id = favorite.id
+				input.dataset.name = favorite.name
+				//input.dataset.artist = favorite.artists[0].name
+				input.dataset.uri =favorite.uri
+				
+                div2.appendChild(input)
+                label.before(input)
+		// label.innerHTML =  `${favorite.song_name} <iframe src="https://open.spotify.com/embed/track/${uri[2]}" width="300" height="50" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>  `
+
+
+	});
+  }
+
+
+function getFavorites(userId){
+  fetch(`http://localhost:3000/api/v1/favorites/${userId}`, {
+    method: 'GET',
+    headers: {
+      'accept': 'application/json',
+      'content-type': 'application/json'
+    },
+    })
+    .then(response => response.json())
+    .then(json => renderFavorites(json))
+}
 
 
 

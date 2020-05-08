@@ -1,5 +1,7 @@
 body {
-	background: linear-gradient(-45deg,#4699c5, rgb(55, 66, 64), #808080, 	#696969, #505050	);
+  background: linear-gradient(-45deg,#558f7d, #55756b, #4a8192, 	#61a591, #4d927e	);
+
+
 	background-size: 400% 400%;
     animation: gradient 15s ease infinite;
     margin: 0;
@@ -25,12 +27,292 @@ body {
     -o-background-size: cover;
     background-size: cover;
   } */
+/*notes*/
+.note-position-1 {
+  top: 650px;
+  right: 50px;
+}
 
+.note-position-2 {
+  top: 480px;
+  right: 50px;
+}
+
+.note-position-3 {
+  top: 260px;
+  right: 100px;
+}
+
+.note-position-4 {
+  top: 155px;
+  right: 75px;
+}
+
+.animation-delay-1 {
+  animation-delay: 1s;
+}
+
+.animation-delay-2 {
+  animation-delay: 2s;
+}
+
+.note-amination {
+  position: absolute;
+  font-size: 35px;
+  animation-name: notes;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  opacity: 0;
+}
+
+@keyframes notes {
+  0% {
+    font-size: 35px;
+    opacity: 0; 
+  }
+  50% {
+    opacity: 1; 
+  }
+  100% {
+    font-size: 60px;
+    margin-top: -150px;
+    opacity: 0; 
+  }
+}
+/*end*/
+/*text search say */
+body{
+  
+  padding: 4em;
+ 
+    
+    
+}
+.line-1{
+ 
+  position: fixed;
+    z-index: 1;
+ 
+    position: relative;
+    top: 50%;  
+    width: 24em;
+    margin: 0 auto;
+    border-right: 2px solid rgba(255,255,255,.75);
+    font-size: 180%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-10%);    
+}
+
+/* Animation */
+.anim-typewriter{
+  animation: typewriter 4s steps(44) 1s 1 normal both,
+             blinkTextCursor 500ms steps(44) infinite normal;
+}
+@keyframes typewriter{
+  from{width: 0;}
+  to{width: 24em;}
+}
+@keyframes blinkTextCursor{
+  from{border-right-color: transparent}
+  to{border-right-color: transparent;}
+}
+/*end*/
+
+.song{
+  overflow:hidden; 
+  overflow-y:scroll;
+      
+}
+/*title*/
+h1{
+  
+  margin: 0;
+padding:20px;
+position: absolute;
+top:5%;
+transform: translateY(-50%);
+
+width: 100%;
+text-align: center;
+/* text-align: right; */
+color: #ddd;
+font-size: 3em;
+/* font-size: 1em; */
+font-family: sans-serif;
+letter-spacing: 0.2em;
+
+}
+
+h1 span{
+opacity: 0;
+display: inline-block;
+animation: animate 1s linear forwards;
+}
+@keyframes animate{
+0%{
+  opacity: 0;
+  transform: rotateY(90deg);
+  filter: blur(10px);
+}
+100%{
+  opacity: 1;
+  transform: rotateY(0deg);
+  filter: blur(0);
+}
+
+}
+h1 span:nth-child(1){
+animation-delay: 0s;
+
+}
+h1 span:nth-child(2){
+animation-delay: 1s;
+color: rgb(65, 173, 168);
+}
+h1 span:nth-child(3){
+animation-delay: 1.5s;
+color: rgb(65, 173, 168);
+}
+h1 span:nth-child(4){
+animation-delay: 2s;
+color: rgb(65, 173, 168);
+}
+h1 span:nth-child(5){
+animation-delay: 2.5s;
+color: rgb(65, 173, 168);
+}
+h1 span:nth-child(6){
+animation-delay: 3.0s;
+color: rgb(146, 202, 193);
+}
+h1 span:nth-child(7){
+animation-delay: 3.0s;
+color: rgb(146, 202, 193);
+}
+h1 span:nth-child(8){
+animation-delay: 3.5s;
+color: rgb(146, 202, 193);
+}
+h1 span:nth-child(9){
+animation-delay: 3.5s;
+color: rgb(146, 202, 193);
+}
+h1 span:nth-child(10){
+animation-delay: 3.5s;
+color: rgb(146, 202, 193);
+}
 /*  SECOND SECTION STYLING*/
 * {
   box-sizing: border-box;
 }
 /*list for favorite songs*/
+.list-item2{
+  width:350px;
+  height: auto;
+  background-image: linear-gradient(to right top, #032251, #022d6a, #013883, #04439e, #0b4fb9);
+  border-radius: 10px;
+  box-shadow: 0px 5px 30px #000;
+}
+  
+  .item2{
+	width: 100%;
+	height: 50px;
+	border-top: 1px solid rgba(0,0,0,0.5); /*div item*/
+	display: grid;
+	grid-template-columns: 1fr 6fr 1fr;
+	align-items: center;  
+	color: black;
+	font-size: 1.3rem;
+	position: relative;
+	overflow: hidden;
+  }
+  
+  .item2 input[type="checkbox"], .item span{
+	margin: 0 auto;
+  }
+  
+  .item2 label, .item span{
+	color: rgba(255,255,255,.4);
+  }
+  
+  .item2 input[type="checkbox"]{
+	-webkit-appearance: none;
+	height: 15px;
+	width: 15px;
+	border: 2px solid rgba(255,255,255,.4);
+	border-radius: 3px;
+	outline: none;
+	margin: 0 auto;
+	transition: .2s all;
+	cursor: pointer;
+	z-index:2;
+  }
+  
+  .item2 input[type="checkbox"]:before{
+	content: '\f00c';
+	position: absolute;
+	font-family: fontAwesome;
+	font-size: 10px;
+	color: rgba(255,255,255,.4);
+	opacity: 0;
+	color: aqua;
+  }
+  
+  .item input[type="checkbox"]:checked:before {
+	opacity: 1;
+  }
+  
+  .item2 input[type="checkbox"]:checked {
+	 border-color: aqua; 
+	box-shadow: 0px 0px 8px aqua; 
+  }
+  
+  .item2 input[type="checkbox"]:hover {
+	transform: scale(1.2);
+  }
+  
+  .item2 input[type="checkbox"]:checked  ~ label{
+	color: white; 
+  }
+  
+  .item2 input[type="checkbox"]:checked  ~ span{
+	color: aqua; 
+	animation: animation .5s;
+  }
+  .item2 label:before {
+	content: "";
+	position: absolute;
+	width: 130px;
+	height: 100%;
+	left:-80px;
+	transform: skew(40deg);
+	background: rgba(0,0,0,0.1);
+	transition: .3s;
+  }
+  .item2 input[type="checkbox"]:checked ~ label:before{
+	left: 120%;
+  }
+  @keyframes animation {
+	0%{
+	 opacity: 0;
+	  transform: scale(.1)  rotate(30deg);
+	}
+	50%{
+	  transform: rotate(-10deg);
+	}
+	75%{
+	  transform: rotate(3deg);
+	}
+	100%{
+	  opacity: 1;
+	  tranform: scale(1);
+	}
+  }
+
+/*end*/
 
 .list-item{
 	width:250px;
@@ -182,6 +464,12 @@ body {
  }
 
   .search {
+    position: absolute;
+    left: 0;
+    top: 0%;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
     border-color: coral;
     overflow: hidden;
     padding: 0 0 1.25em;
@@ -330,6 +618,12 @@ body {
 
   /*DESIGN FOR LIST*/
 ol {
+  margin-top: 75px;
+  height:100vh;
+  position: absolute; /*newly added*/
+    overflow:hidden; 
+    overflow:scroll;
+  margin-left: 1px;
   margin-left: auto;
   margin-right: auto;
   width: 55em;
@@ -369,10 +663,20 @@ li + li {
   border-top: 1px solid rgba(255,255,255,0.2);
   
 }
+.work{
+  
+  margin-top: 75px;
+  height:100vh;
+  position: absolute; /*newly added*/
+    overflow:hidden; 
+    overflow:scroll;
+  margin-left: 1px; /*newly added*/
+  /* top: 5px;newly added */
 
+}
 
   /*END OF LIST*/
-  
+
   
 /*hidden nav*/
 nav {
@@ -426,6 +730,7 @@ nav {
 }
 
 section {
+  margin: 0;
     position: absolute;
     top: 0;
     height: 100vh;
@@ -434,7 +739,7 @@ section {
     transition: all ease-in .5s; /*get rid of it to solve isue of switching pages*/
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
 } 
 
 /* section div {
@@ -463,6 +768,7 @@ section:target div {
   background:var(--primary-color);
 }
 #second {
+  margin-top: 20px;
     background: var(--complimentary-color);
 }
 
@@ -470,9 +776,9 @@ section:target div {
     background: var(--contrast-color);
 }
 
-#fourth {
+/* #fourth {
     background: var(--light-color);
-}
+} */
 
 @keyframes fadeIn {
     100% { opacity:1 }
@@ -485,6 +791,7 @@ section:target div {
      
      max-width:500px;
   bottom: 10px;
+
   
 }
 
