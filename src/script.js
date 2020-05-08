@@ -394,9 +394,10 @@ function unFavorite(){
 	
 	document.addEventListener('click', function(e){
 		if (e.target.className  === 'remove-image'){
-			let favoriteId = e.target.parentNode.dataset.id
+            let favoriteId = e.target.dataset.id
+            console.log(e.target)
 			console.log(favoriteId)
-			//removeFavorite(favoriteId)
+			removeFavorite(favoriteId)
 			////deleteFavorite(favoriteId)
 		}
 
@@ -408,9 +409,10 @@ unFavorite()
 
 //remove favorite from the DOM by id
 function removeFavorite(favoriteId){
-	let favoritesContainer = document.querySelector('.embed-container')
+    let favoritesContainer = document.querySelector('.song')
+    // console.log("Favorites Container:", favoritesContainer)
 	let favorite = favoritesContainer.querySelector(`[data-id='${favoriteId}']`)
-	console.log(favorite)
+	// console.log("favorite:", favorite)
 	favorite.remove()
   }
   
