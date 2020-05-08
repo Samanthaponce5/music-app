@@ -116,6 +116,7 @@ function after() {
 
 <section id= 'third'>
 <container class='song'></container>
+
 </section>
 
 
@@ -325,44 +326,22 @@ function createFavorite(songObj){
 	ul.className = 'embed-container'
 	let li = document.createElement('p')
 	
+
+
 	let uri = favoriteObj.uri.split(":")
-	li.innerHTML = `<iframe src="https://open.spotify.com/embed/track/${uri[2]}"  frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> `
+	li.innerHTML = `<div class="image-area"><iframe src="https://open.spotify.com/embed/track/${uri[2]}"  frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> <a data-id=${favoriteObj.id} class="remove-image"  style="display: inline;">&#215;</a></div>`
 	li.dataset.id = favoriteObj.id
 	ul.appendChild(li)
 	third.appendChild(ul)
+
+
+
+
+	//------------------------list bar--------------------------------
+	
   }
 
 
-
-
-
-//   function addFavorite(favoriteObj){
-// 	let third = document.getElementById('third');
-// 	third.innerHTML = `<div class="list-item2"> </div>`
-// 	const div = document.querySelector(".list-item2")
-
-// 	let div2 = document.createElement('div')
-// 	div2.className = 'item2'
-// 	let label = document.createElement('label')
-// 	div.appendChild(div2)
-// 	label.className = 'label2'
-// 	let uri = favoriteObj.uri.split(":")
-// 	label.innerHTML =  `${favoriteObj.song_name}`
-// 	div2.append(label)
-// 	let input = document.createElement('input')
-//                 input.className = 'box'
-// 				input.type = 'checkbox'
-// 				input.name = 'checkbox'
-// 				input.dataset.id = favoriteObj.id
-// 				input.dataset.name = favoriteObj.name
-// 				//input.dataset.artist = favoriteObj.artists[0].name
-// 				input.dataset.uri =favoriteObj.uri
-				
-//                 div2.appendChild(input)
-//                 label.before(input)
-// 	// label.innerHTML =  `${favoriteObj.song_name} <iframe src="https://open.spotify.com/embed/track/${uri[2]}" width="300" height="50" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>  `
-
-//   }
 
 
   function renderFavorites(favorites){ //?receiving an array of favorite objects
@@ -394,6 +373,7 @@ function createFavorite(songObj){
 
 
 	});
+
   }
 
 
@@ -408,6 +388,44 @@ function getFavorites(userId){
     .then(response => response.json())
     .then(json => renderFavorites(json))
 }
+//===============DELETE============================================
+
+function unFavorite(){
+	
+	document.addEventListener('click', function(e){
+		if (e.target.className  === 'remove-image'){
+			let favoriteId = e.target.parentNode.dataset.id
+			console.log(favoriteId)
+			//removeFavorite(favoriteId)
+			////deleteFavorite(favoriteId)
+		}
+
+	})
+
+}
+
+unFavorite()
+
+//remove favorite from the DOM by id
+function removeFavorite(favoriteId){
+	let favoritesContainer = document.querySelector('.embed-container')
+	let favorite = favoritesContainer.querySelector(`[data-id='${favoriteId}']`)
+	console.log(favorite)
+	favorite.remove()
+  }
+  
+  //deletes a favorite from a database
+  function deleteFavorite(favoriteId){
+	fetch(`http://localhost:3000/api/v1/delete/?q=${favoriteId}`, {
+	  // mode: 'no-cors',
+	  method: 'POST',
+	  headers: {
+		'accept': 'application/json',
+		'content-type': 'application/json'
+	  },
+	})
+  }
+ 
 
 
 
@@ -418,10 +436,7 @@ function getFavorites(userId){
 
 
 
-
-
-
-
+  
 
 
 
