@@ -125,8 +125,11 @@ body{
 .song{
   overflow:hidden; 
   overflow-y:scroll;
-      
+  position:absolute; 
+  left:300px;
+max-width: 900px;
 }
+/*embed-container*/
 /*title*/
 h1{
   
@@ -619,6 +622,7 @@ color: rgb(146, 202, 193);
 
   /*DESIGN FOR LIST*/
 ol {
+  
   margin-top: 75px;
   height:100vh;
   position: absolute; /*newly added*/
