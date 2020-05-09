@@ -63,12 +63,25 @@ function after() {
 <div class="note-position-4 note-amination">
   &#9834;
 </div>
+
+<div class="note-position-7 note-amination">
+  &#9835;
+</div>
+<div class="note-position-5 note-amination animation-delay-2">
+  &#9833;
+</div>
+<div class="note-position-8 note-amination animation-delay-1">
+  &#9839;
+</div>
+<div class="note-position-6 note-amination">
+  &#9834;
+</div>
 	`
 
 	let title = document.querySelector('.title')
 	title.style.fontSize = ' 1em'
 	title.style.textAlign ='right'
-	title.style.transform = 'translateX(-10%)'
+	title.style.transform = 'translateX(-5%)'
 	let form = document.querySelector('#myform');
 //    form.innerHTML = ``;
 //     window.location.href="#first"
@@ -105,7 +118,7 @@ function after() {
 
  <section id= 'first'>
  <div class='work'></div>
- <p class="line-1 anim-typewriter">Search to browse albums</p>
+ <p class="line-1 anim-typewriter">Search an artist to begin!</p>
 </section>
 
 <section id= 'second'>
@@ -115,7 +128,12 @@ function after() {
 </section>
 
 <section id= 'third'>
+<div class="threeD">
+            Favorites
+</div>
+
 <container class='song'></container>
+
 
 </section>
 
@@ -177,7 +195,7 @@ let text = document.querySelector('.line-1.anim-typewriter')
                        
                         
 					}
-					text.innerHTML = ''
+					text.remove()
 				} else {
 					text.textContent = 'Search to browse albums '
 					matches = [];
@@ -271,13 +289,14 @@ document.addEventListener('click', function(e){
                 label.before(input)
                 
             })
-           		favorite()
+           		
 
 		})
+		
     }
 
 })
-
+favorite()
 
 }
 getMusic()
@@ -329,7 +348,7 @@ function createFavorite(songObj){
 
 
 	let uri = favoriteObj.uri.split(":")
-	li.innerHTML = `<div class="image-area"><iframe src="https://open.spotify.com/embed/track/${uri[2]}"  frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> <a data-id=${favoriteObj.id} class="remove-image"  style="display: inline;">&#215;</a></div>`
+	li.innerHTML = `<div class="image-area"><h6>${favoriteObj.song_name}</h6><iframe src="https://open.spotify.com/embed/track/${uri[2]}" width='80' height='80' frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> <a data-id=${favoriteObj.id} class="remove-image"  style="display: inline;">&#215;</a></div>`
 	li.dataset.id = favoriteObj.id
 	ul.appendChild(li)
 	third.appendChild(ul)
@@ -438,7 +457,7 @@ function removeFavorite(favoriteId){
 
 
 
-  
+
 
 
 
