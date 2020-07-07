@@ -1,6 +1,6 @@
 
 ## Omega Sound
-This app is designed for users to be able to search for songs they would like to listen to.<br> You can save it to a favorites liest or remove it from the list if you no longer like it.<br>
+This app is designed for users to be able to search for songs they would like to listen to.<br> You can save it to a favorites list or remove it from the list if you no longer enjoy the song <br>
 
 ## Getting Started
   A premium spotify account is needed for this application
